@@ -1,0 +1,7 @@
+{
+  "name": "go-pro-ionic-v3-try2",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
