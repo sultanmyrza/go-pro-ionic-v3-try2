@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">go-pro-ionic-v3-try2</string>
+    <string name="title_activity_main">go-pro-ionic-v3-try2</string>
+    <string name="package_name">io.numbersprotocol.capturelite.experiments.gopro</string>
+    <string name="custom_url_scheme">io.numbersprotocol.capturelite.experiments.gopro</string>
+</resources>
