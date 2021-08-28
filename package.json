@@ -22,7 +22,7 @@
     "@angular/router": "~12.1.1",
     "@capacitor-community/bluetooth-le": "^1.2.0",
     "@capacitor-community/http": "^1.2.0",
-    "@capacitor-community/wifi": "file:../../capacitor/plugins/community-capacitor-wifi",
+    "@capacitor-community/wifi": "git+https://github.com/digaus/community-capacitor-wifi.git#capacitor3",
     "@capacitor/android": "3.2.0",
     "@capacitor/app": "1.0.2",
     "@capacitor/core": "3.2.0",
