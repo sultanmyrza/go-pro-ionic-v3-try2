@@ -6,7 +6,7 @@ include ':capacitor-community-bluetooth-le'
 project(':capacitor-community-bluetooth-le').projectDir = new File('../node_modules/@capacitor-community/bluetooth-le/android')
 
 include ':capacitor-community-wifi'
-project(':capacitor-community-wifi').projectDir = new File('../node_modules/@capacitor-community/wifi/android')
+project(':capacitor-community-wifi').projectDir = new File('../../../capacitor/plugins/community-capacitor-wifi/android')
 
 include ':capacitor-app'
 project(':capacitor-app').projectDir = new File('../node_modules/@capacitor/app/android')
