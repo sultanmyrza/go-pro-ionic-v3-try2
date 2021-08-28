@@ -214,6 +214,7 @@ export class Tab1Page {
       await Wifi.connect({
         ssid: wifiSSID,
         password: wifiPASS,
+        isHiddenSsid: false,
       })
         .then((result) => {
           console.warn(`connectToGoProWifi.result`, result);
