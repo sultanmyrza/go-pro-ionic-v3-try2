@@ -11,7 +11,7 @@ def capacitor_pods
   pod 'CapacitorCordova', :path => '../../node_modules/@capacitor/ios'
   pod 'CapacitorCommunityBluetoothLe', :path => '../../node_modules/@capacitor-community/bluetooth-le'
   pod 'CapacitorCommunityHttp', :path => '../../node_modules/@capacitor-community/http'
-  pod 'CapacitorCommunityWifi', :path => '../../../../capacitor/plugins/community-capacitor-wifi'
+  pod 'CapacitorCommunityWifi', :path => '../../node_modules/@capacitor-community/wifi'
   pod 'CapacitorApp', :path => '../../node_modules/@capacitor/app'
   pod 'CapacitorHaptics', :path => '../../node_modules/@capacitor/haptics'
   pod 'CapacitorKeyboard', :path => '../../node_modules/@capacitor/keyboard'
