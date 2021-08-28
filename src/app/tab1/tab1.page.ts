@@ -211,7 +211,6 @@ export class Tab1Page {
       await Wifi.connect({
         ssid: wifiSSID,
         password: wifiPASS,
-        isHiddenSsid: true,
       })
         .then((result) => {
           console.warn(`connectToGoProWifi.result`, result);
@@ -220,12 +219,14 @@ export class Tab1Page {
         .catch((error: any) => {
           console.error(`connectToGoProWifi.error`);
           console.error(error);
-          this.presentToast(JSON.stringify(error));
+          this.presentToast(`Wifi.connect().catch() ${JSON.stringify(error)}`);
         });
     } catch (error) {
       console.error(`connectToGoProWifi.error`);
       console.error(error);
-      this.presentToast(JSON.stringify(error));
+      this.presentToast(
+        `await Wifi.connect() catch() ${JSON.stringify(error)}`
+      );
     }
   }
 
