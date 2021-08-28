@@ -5,6 +5,7 @@ import {
   numbersToDataView,
   ScanResult,
 } from '@capacitor-community/bluetooth-le';
+import { Wifi } from '@capacitor-community/wifi';
 import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-tab1',
@@ -187,6 +188,44 @@ export class Tab1Page {
     } catch (error) {
       console.error('getGoProWiFiCreds', JSON.stringify(error));
       this.presentToast(`${JSON.stringify(error)}`);
+    }
+  }
+
+  async connectToGoProWifi() {
+    if (!this.bluetoothConnectedDevice) {
+      return;
+    }
+
+    await this.sendBluetoothWriteCommand(this.enableGoProWiFiCommand);
+    const { wifiSSID, wifiPASS } = await this.getGoProWiFiCreds();
+
+    try {
+      // this.presentToast(`Wifi.connectPrefix`);
+      // console.log(`Connecting to ${wifiSSID} with password ${wifiPASS}`);
+      // await Wifi.connectPrefix({
+      //   ssid: wifiSSID,
+      //   password: wifiPASS,
+      // })
+      this.presentToast(`Wifi.connect`);
+      console.log(`Connecting to ${wifiSSID} with password ${wifiPASS}`);
+      await Wifi.connect({
+        ssid: wifiSSID,
+        password: wifiPASS,
+        isHiddenSsid: true,
+      })
+        .then((result) => {
+          console.warn(`connectToGoProWifi.result`, result);
+          this.presentToast(`Connected to ${JSON.stringify(result.ssid)}`);
+        })
+        .catch((error: any) => {
+          console.error(`connectToGoProWifi.error`);
+          console.error(error);
+          this.presentToast(JSON.stringify(error));
+        });
+    } catch (error) {
+      console.error(`connectToGoProWifi.error`);
+      console.error(error);
+      this.presentToast(JSON.stringify(error));
     }
   }
 
