@@ -5,6 +5,7 @@ import {
   numbersToDataView,
   ScanResult,
 } from '@capacitor-community/bluetooth-le';
+import { Http } from '@capacitor-community/http';
 import { Wifi } from '@capacitor-community/wifi';
 import { ToastController } from '@ionic/angular';
 @Component({
@@ -18,6 +19,8 @@ export class Tab1Page {
 
   bluetoothConnectedDevice?: ScanResult;
   bluetoothConnectedDeviceServiceId?: string;
+
+  readonly goproBaseUrl = 'http://10.5.5.9:8080';
 
   readonly goProControlAndQueryServiceUUID =
     '0000fea6-0000-1000-8000-00805f9b34fb'.toUpperCase();
@@ -227,6 +230,33 @@ export class Tab1Page {
       this.presentToast(
         `await Wifi.connect() catch() ${JSON.stringify(error)}`
       );
+    }
+  }
+
+  async loadImagesFromGoPro() {
+    const url = this.goproBaseUrl + '/gopro/media/list';
+
+    try {
+      const response = await Http.get({ url });
+
+      const fileNames: string[] = (response.data.media[0].fs as any[]).map(
+        (e) => e.n
+      );
+
+      const imageUrls = fileNames
+        .filter((e) => e.toLowerCase().includes('.jpg'))
+        .map((e) => `${this.goproBaseUrl}/videos/DCIM/100GOPRO/${e}`);
+
+      const videoUrls = fileNames
+        .filter((e) => e.toLowerCase().includes('.mp4'))
+        .map((e) => `${this.goproBaseUrl}/videos/DCIM/100GOPRO/${e}`);
+
+      console.log('imageUrls', imageUrls);
+      console.log('videoUrls', videoUrls);
+      this.presentToast('Successfully fetched go pro media');
+    } catch (error) {
+      console.error(error);
+      this.presentToast('Failed to fetch go pro media');
     }
   }
 
