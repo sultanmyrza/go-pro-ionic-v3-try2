@@ -22,6 +22,14 @@ export class Tab1Page {
 
   readonly goproBaseUrl = 'http://10.5.5.9:8080';
 
+  /**
+   * @goProControlAndQueryServiceUUID {string} - Should be FEA6.
+   * https://gopro.github.io/OpenGoPro/ble#services-and-characteristics
+   * and 128-bit version will be 0000fea6-0000-1000-8000-00805f9b34fb
+   * passing FEA6 (16-bit version) does not work
+   * you can read more here https://github.com/gopro/OpenGoPro/discussions/41#discussion-3530421
+   */
+  //
   readonly goProControlAndQueryServiceUUID =
     '0000fea6-0000-1000-8000-00805f9b34fb'.toUpperCase();
 
@@ -52,8 +60,11 @@ export class Tab1Page {
       this.bluetoothScanResults = [];
       this.bluetoothIsScanning = true;
 
+      // passing goProControlAndQueryServiceUUID will show only GoPro devices
+      // read more here https://github.com/gopro/OpenGoPro/discussions/41#discussion-3530421
+      // but if you pass empty array to services it will show all nearby bluetooth devices
       await BleClient.requestLEScan(
-        { services: [] },
+        { services: [this.goProControlAndQueryServiceUUID] },
         this.onBluetoothDeviceFound.bind(this)
       );
 
